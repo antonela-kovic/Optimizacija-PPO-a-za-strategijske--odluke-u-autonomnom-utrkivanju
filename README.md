@@ -123,17 +123,17 @@ pip install fastapi uvicorn "shimmy>=2.0"
 
 ```
 VS_Code verzija/
-├\2500 api.py                   # FastAPI sučelje
-├\2500 f1_env.py                # Okruženje s nagradnom funkcijom i vremenskim uvjetima
-├\2500 model.py                 # LSTM feature extractor
-├\2500 train.py                 # PPO treniranje s evaluacijama
-├\2500 prepare_data.py          # Učitavanje i spremanje FastF1 podataka
-├\2500 main.ipynb               # Evaluacija + API testiranje
-├\2500 predict_strategies.py    # (opcionalno) batch testovi
-├\2500 utils.py                 # Helper funkcije i značajke
-├\2500 saved_models/            # Trenirani modeli
-├\2500 data/                    # .npy i CSV podaci
-└\2500 requirements.txt         # Python ovisnosti
+├\api.py                   # FastAPI sučelje
+├\f1_env.py                # Okruženje s nagradnom funkcijom i vremenskim uvjetima
+├\model.py                 # LSTM feature extractor
+├\train.py                 # PPO treniranje s evaluacijama
+├\prepare_data.py          # Učitavanje i spremanje FastF1 podataka
+├\.ipynb                   # Evaluacija + API testiranje
+├\predict_strategies.py    # (opcionalno) batch testovi
+├\utils.py                 # Helper funkcije i značajke
+├\saved_models/            # Trenirani modeli
+├\data/                    # .npy i CSV podaci
+└\requirements.txt         # Python ovisnosti
 ```
 
 ---
