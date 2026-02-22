@@ -199,8 +199,8 @@ VS_Code verzija-finall/
 5. `uvicorn api:app --reload` + test preko `/docs`
 6. evaluacija u `main.ipynb`
 
-```
-```
+
+
 
 
 
