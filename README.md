@@ -1,30 +1,26 @@
-F1 RL Agent – PPO Strategija + Logički sloj (RAW → SAFE)
+### F1 RL Agent – PPO Strategija + Logički sloj (RAW → SAFE)
 
 Ovaj projekt koristi PPO (Proximal Policy Optimization) za treniranje agenta koji optimizira strategiju utrkivanja (pit stop, izbor guma, stil vožnje) koristeći stvarne podatke iz FastF1 biblioteke.
-
-Nadogradnja projekta: uveden je deterministički logički sloj post-verifikacije koji provjerava PPO odluke i po potrebi radi korekciju:
+Uveden je deterministički logički sloj post-verifikacije koji provjerava PPO odluke i po potrebi radi korekciju:
 
 RAW = originalna PPO odluka
 
 SAFE = odluka nakon provjere pravila + korekcija (override)
 
 generira se i audit report (kršenja + što je promijenjeno i zašto)
-## KORACI ZA POKRETANJE
 
-### 0) Instalacija ovisnosti
-```bash
+### KORACI ZA POKRETANJE
+
+0) Instalacija ovisnosti
 pip install -r requirements.txt
-````
 
 Ako koristiš API:
 
-```bash
 pip install fastapi uvicorn
-```
 
-> Napomena: projekt koristi Stable-Baselines3 (PPO), Gymnasium/Gym kompatibilnost, FastF1 i standardne znanstvene biblioteke (NumPy, Pandas, Matplotlib…).
+Napomena: projekt koristi Stable-Baselines3 (PPO), Gymnasium/Gym kompatibilnost, FastF1 i standardne znanstvene biblioteke (NumPy, Pandas, Matplotlib…).
 
----
+
 
 ### 1) Priprema podataka (FastF1 → CSV/NPY)
 
@@ -202,4 +198,5 @@ VS_Code verzija-finall/
 
 ```
 ```
+
 
