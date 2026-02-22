@@ -12,6 +12,7 @@ generira se i audit report (kršenja + što je promijenjeno i zašto)
 ### KORACI ZA POKRETANJE
 
 ### 0) Instalacija ovisnosti
+
 ```bash
 pip install -r requirements.txt
 ```
@@ -200,6 +201,7 @@ VS_Code verzija-finall/
 
 ```
 ```
+
 
 
 
