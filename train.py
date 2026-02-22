@@ -156,3 +156,4 @@ plt.title("Distribucija guma korištenih u podacima")
 plt.ylabel("Broj korištenja")
 plt.tight_layout()
 plt.show()
+
