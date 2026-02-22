@@ -1,6 +1,4 @@
 # === predict_strategies.py ===
-# === Nadogradnja 4: Predikcija strategija drugih vozača ===
-# Dodajemo novu funkciju koja koristi trenirani agent da predvidi strategiju za stvarne lapove
 import numpy as np
 import pandas as pd
 from stable_baselines3 import PPO
@@ -17,14 +15,7 @@ model = PPO.load("saved_models/ppo_f1_rl_logic_v4_retrained.zip") # model sa pop
 obs_array = np.load("data/obs_array.npy")
 true_actions = np.load("data/true_actions.npy")
 
-# Predikcije
-# predicted_actions = []
-# for obs in obs_array:
-#     action, _ = model.predict(obs.reshape(1, -1), deterministic=True)
-#     action = action[0] if isinstance(action[0], (list, np.ndarray)) else action
-#     predicted_actions.append(action)
 
-# predicted_actions = np.array(predicted_actions)
 # Nadogradnja za logički sloj
 viol_before = 0
 #viol_after = 0
@@ -43,7 +34,7 @@ for obs in obs_array:
     raw = action[0] if isinstance(action[0], (list, np.ndarray)) else action
     raw = np.array(raw, dtype=np.int32)
 
-    raw_actions.append(raw)   # <-- DODAJ OVO za provjeru tocnosti pit stop-a
+    raw_actions.append(raw)   # <-- provjera tocnosti pit stop-a
 
     safe, report = verify_action(obs, raw, selected_features)
 
@@ -62,14 +53,12 @@ for obs in obs_array:
         viol_before += 1
     if len(report.overrides) > 0:
         overrides_count += 1
-    # nakon verifikacije, “violation” računamo kao: ako je i dalje kršeno MUST pravilo (u ovom MVP-u bi trebalo biti 0)
-    # za jednostavnost: pretpostavimo da je 0 jer enforce-amo korekciju; ili uvedemo check ako želiš strože
+  
 
     safe_actions.append(safe)
 
 
-# safe_actions = np.array(safe_actions, dtype=np.int32)
-# predicted_actions = np.array(safe_actions)
+
 # Izmjena zbog provjere pit stopa
 raw_actions = np.array(raw_actions, dtype=np.int32)
 safe_actions = np.array(safe_actions, dtype=np.int32)
@@ -79,7 +68,7 @@ predicted_actions = safe_actions   # default: logički sloj uključen
 # predicted_actions = raw_actions  # ako želiš vidjeti ponašanje bez logike
 
 # Nadogradnja:  Dodaj guard da ne dijeliš s nulom (ako bi obs_array ikad bio prazan):
-# print(f"Logic layer override rate: {overrides_count/len(obs_array):.2%}")
+
 n = len(obs_array)
 print(f"Logic layer override rate: {overrides_count/n:.2%}" if n else "No samples.")
 print(f"Violations (raw): {viol_before/len(obs_array):.2%}")
@@ -144,3 +133,4 @@ plt.xlabel("Stil (0-2)")
 
 plt.tight_layout()
 plt.show()
+
