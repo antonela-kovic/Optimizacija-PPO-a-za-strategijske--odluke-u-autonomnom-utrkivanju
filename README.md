@@ -11,13 +11,15 @@ generira se i audit report (kršenja + što je promijenjeno i zašto)
 
 ### KORACI ZA POKRETANJE
 
-0) Instalacija ovisnosti
+### 0) Instalacija ovisnosti
+```bash
 pip install -r requirements.txt
+```
 
 Ako koristiš API:
-
+```bash
 pip install fastapi uvicorn
-
+```
 Napomena: projekt koristi Stable-Baselines3 (PPO), Gymnasium/Gym kompatibilnost, FastF1 i standardne znanstvene biblioteke (NumPy, Pandas, Matplotlib…).
 
 
@@ -198,5 +200,6 @@ VS_Code verzija-finall/
 
 ```
 ```
+
 
 
