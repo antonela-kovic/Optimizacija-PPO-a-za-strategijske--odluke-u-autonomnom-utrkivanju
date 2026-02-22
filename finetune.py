@@ -1,8 +1,3 @@
-# Ova skripta je za finetuning modela kako bismo poboljsali tocnost za stil agentskog modela, a pri tome izbjegli treniranje od 0
-# koje smo imali u train.py
-# Za pokretanje: python finetune.py
-# VAŽNO: U skripti predict_strategies.py promijeni samo ovu liniju odnosno osigurati da stoji ovo:
-#        model = PPO.load("saved_models/ppo_f1_rl_logic_v3_finetuned.zip")
 # finetune.py
 from pathlib import Path
 import numpy as np
@@ -39,4 +34,5 @@ def main():
     print(f"Fine-tuned model spremljen u: {OUT}")
 
 if __name__ == "__main__":
+
     main()
