@@ -1,15 +1,14 @@
-````md
-# F1 RL Agent – PPO Strategija + Logički sloj (RAW → SAFE)
+F1 RL Agent – PPO Strategija + Logički sloj (RAW → SAFE)
 
-Ovaj projekt koristi **PPO (Proximal Policy Optimization)** za treniranje agenta koji optimizira strategiju utrkivanja (pit stop, izbor guma, stil vožnje) koristeći stvarne podatke iz **FastF1** biblioteke.
+Ovaj projekt koristi PPO (Proximal Policy Optimization) za treniranje agenta koji optimizira strategiju utrkivanja (pit stop, izbor guma, stil vožnje) koristeći stvarne podatke iz FastF1 biblioteke.
 
-Uveden je **deterministički logički sloj post-verifikacije** koji provjerava PPO odluke i po potrebi radi korekciju:
-- **RAW** = originalna PPO odluka
-- **SAFE** = odluka nakon provjere pravila + korekcija (override)
-- generira se i **audit report** (kršenja + što je promijenjeno i zašto)
+Nadogradnja projekta: uveden je deterministički logički sloj post-verifikacije koji provjerava PPO odluke i po potrebi radi korekciju:
 
----
+RAW = originalna PPO odluka
 
+SAFE = odluka nakon provjere pravila + korekcija (override)
+
+generira se i audit report (kršenja + što je promijenjeno i zašto)
 ## KORACI ZA POKRETANJE
 
 ### 0) Instalacija ovisnosti
@@ -203,3 +202,4 @@ VS_Code verzija-finall/
 
 ```
 ```
+
