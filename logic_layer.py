@@ -29,9 +29,6 @@ def verify_action(
     """
     if config is None:
         config = {
-            # "tyre_pit_force": 5.0,   # ispod ove vrijednosti forsiraj pit
-            # "tyre_pit_block": 15.0,  # iznad ove vrijednosti blokiraj pit u suhim uvjetima
-            # Izmjena zbog narušavanja tocnosti pit stopa
             "tyre_pit_force": 2.0,     # samo kad je baš kritično
             "tyre_pit_block": 30.0,    # blokiraj pit samo kad su gume jako dobre
         }
@@ -70,7 +67,7 @@ def verify_action(
             override("compound", comp, 4, "R1_WET_REQUIRES_WET", "Kiša: WET je obavezno")
             comp = 4
 
-    # R2: Damp => INTER preferred (soft rule but we enforce in prototype)
+  
     # R2: Damp => INTER tyres (enforced)
     if damp:
         triggered.append("R2_DAMP_REQUIRES_INTER")
@@ -119,8 +116,8 @@ def verify_action(
             override("pit", pit, 0, "R5_BLOCK_POINTLESS_PIT", f"TyreLife={tyre_life:.1f} > {config['tyre_pit_block']} i suho")
             pit = 0
 
+ 
     # R6: Wet/damp -> avoid aggressive style
-        # R6: Wet/damp -> avoid aggressive style
     triggered.append("R6_WET_AVOIDS_AGGRESSIVE")
     if (wet or damp) and style == 2:
         violations.append("R6: Mokro/kiša -> agresivan stil nije dopušten (sigurnost)")
@@ -159,4 +156,5 @@ def humanize_action(action: np.ndarray) -> Dict[str, str]:
         "pit": "DA" if pit == 1 else "NE",
         "compound": f"{comp} ({COMPOUND_NAMES.get(comp, 'UNKNOWN')})",
         "style": f"{style} ({STYLE_NAMES.get(style, 'UNKNOWN')})",
+
     }
