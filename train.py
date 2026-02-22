@@ -1,5 +1,4 @@
-#TRain,py
-#Je li potrebno mijenjati kod train.py komponente ili ne  s obzirom na dodane nadogradnje za prepare_data.py i f1_env.py komponente.Treian.py izgleda ovako:# === train.py (s poboljšanim curriculum i evaluacijom) ===
+# === train.py ===
 from stable_baselines3 import PPO
 from f1_env import FastF1MultiActionEnv
 from model import LSTMFeatureExtractor
@@ -13,9 +12,21 @@ true_actions = np.load("data/true_actions.npy")
 
 env = FastF1MultiActionEnv(obs_array, true_actions=true_actions, difficulty_level="easy")
 
-model = PPO("MlpPolicy", env, policy_kwargs=dict(
-    features_extractor_class=LSTMFeatureExtractor,
-    features_extractor_kwargs=dict(features_dim=64)), verbose=1)
+# Nadogradnja: ent_coef je PPO hyperparametar (entropy bonus) i ide kao argument u konstruktor PPO(...), ne u learn().
+# model = PPO("MlpPolicy", env, policy_kwargs=dict(
+#     features_extractor_class=LSTMFeatureExtractor,
+#     features_extractor_kwargs=dict(features_dim=64)), verbose=1)
+
+model = PPO(
+    "MlpPolicy",
+    env,
+    policy_kwargs=dict(
+        features_extractor_class=LSTMFeatureExtractor,
+        features_extractor_kwargs=dict(features_dim=64)
+    ),
+    ent_coef=0.02,     # <-- OVDJE
+    verbose=1
+)
 
 rewards = []
 weather_rewards = {"suho": [], "mokro": [], "kiša": []}
@@ -58,8 +69,11 @@ for i in range(100):
     smoothed = 0.95 * rewards[-1] + 0.05 * total_reward if rewards else total_reward
     rewards.append(smoothed)
 
-model.save("saved_models/ppo_f1_rl.zip")
 
+
+#model.save("saved_models/ppo_f1_rl.zip")
+#model.save("saved_models/ppo_f1_rl_logic_v2.zip") # novi naziv za model kako nebi pregazili stari model koji nije imao ent_coef i bez logic_layer 
+model.save("saved_models/ppo_f1_rl_logic_v4_retrained.zip") # verzija kod koje popravljamo pit stop u f1_env.py
 # === Vizualizacija 1: Reward po epizodi ===
 plt.figure()
 plt.plot(rewards)

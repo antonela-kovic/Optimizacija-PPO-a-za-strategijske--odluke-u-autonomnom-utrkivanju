@@ -22,7 +22,7 @@ selected_features = [
 ]
 
 
-#Ako pokreces test_env.py za brzo testiranje
+# Ako pokrecemo test_env.py za brzo testiranje
 def load_obs_array(path="data/obs_array.npy"):
     return np.load(path)
 

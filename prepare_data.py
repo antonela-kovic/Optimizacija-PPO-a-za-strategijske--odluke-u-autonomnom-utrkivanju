@@ -28,7 +28,7 @@ for year, gp, session_type in races:
         laps["Driver"] = drv
         laps["Year"] = year
         laps["Track"] = gp
-        #Provjera je li postoje FrontGap i RearGap
+        # Provjera je li postoje FrontGap i RearGap
         if "FrontGap" not in laps:
             laps["FrontGap"] = np.random.uniform(0.5, 5.0, size=len(laps))
         if "RearGap" not in laps:
